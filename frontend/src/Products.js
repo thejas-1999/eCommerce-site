@@ -1,7 +1,7 @@
 const products = [
   {
     _id: "1",
-    name: "Airpods Wireless Blutooth Headphones",
+    name: "Airpods",
     image: "/images/airpods.jpg",
     description:
       "Bluetooth abcd efghij klmn opqr stuvw Bluetooth abcd efghij klmn opqr stuvw Bluetooth abcd efghij klmn opqr stuvw Bluetooth abcd efghij klmn opqr stuvw",
@@ -22,7 +22,7 @@ const products = [
     category: "Electronics",
     price: 100099.0,
     countInStock: 15,
-    rating: 4.8,
+    rating: 4.5,
     numReviews: 120,
   },
   {
@@ -35,7 +35,7 @@ const products = [
     category: "Electronics",
     price: 49999.99,
     countInStock: 7,
-    rating: 4.7,
+    rating: 4.5,
     numReviews: 210,
   },
   {
@@ -48,7 +48,7 @@ const products = [
     category: "Electronics",
     price: 99.99,
     countInStock: 20,
-    rating: 4.6,
+    rating: 5,
     numReviews: 85,
   },
   {
@@ -61,7 +61,7 @@ const products = [
     category: "Electronics",
     price: 99.99,
     countInStock: 25,
-    rating: 4.9,
+    rating: 3.8,
     numReviews: 150,
   },
   {
@@ -74,7 +74,7 @@ const products = [
     category: "Electronics",
     price: 3899.0,
     countInStock: 5,
-    rating: 4.9,
+    rating: 2.5,
     numReviews: 65,
   },
 ];
