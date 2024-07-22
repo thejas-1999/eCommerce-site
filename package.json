@@ -1,0 +1,15 @@
+{
+  "name": "tk-shop",
+  "version": "1.0.0",
+  "description": "eCommerce application with mern stack",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server.js"
+  },
+  "author": "Thejas",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
