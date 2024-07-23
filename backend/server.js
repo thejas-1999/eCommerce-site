@@ -1,14 +1,13 @@
 import express from "express";
-import products from "./data/Products.js";
 import cors from "cors";
+import productRoutes from "./router/productRouter.js";
+import connectDB from "./config/connectDB.js";
 import dotenv from "dotenv";
 dotenv.config();
-import mongoose from "mongoose";
 
 const port = process.env.PORT || 5000;
-const mongoUri = process.env.MONGO_URI;
-
 const app = express();
+
 app.use(cors());
 app.use(express.json());
 
@@ -16,22 +15,20 @@ app.get("/", (req, res) => {
   res.send("API is running");
 });
 
-app.get("/api/products", (req, res) => {
-  res.json(products);
-});
+app.use("/api/products", productRoutes);
 
-app.get("/api/products/:id", (req, res) => {
-  const product = products.find((p) => p._id === req.params.id);
-  res.json(product);
-});
-
-mongoose.connect(mongoUri).then(() => {
+const startServer = async () => {
   try {
-    console.log(`Server is connected to mongoDB`);
+    await connectDB(); // Wait for the DB connection to be established
+    console.log(`MongoDB Connected`);
+
     app.listen(port, () => {
-      console.log(`server is running on http://localhost:${port}`);
+      console.log(`Server is running on http://localhost:${port}`);
     });
   } catch (error) {
-    console.error("Connection error:", error);
+    console.error("Failed to connect to MongoDB", error);
+    process.exit(1); // Exit process with failure
   }
-});
+};
+
+startServer();
