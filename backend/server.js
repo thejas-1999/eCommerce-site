@@ -3,8 +3,10 @@ import products from "./data/Products.js";
 import cors from "cors";
 import dotenv from "dotenv";
 dotenv.config();
+import mongoose from "mongoose";
 
 const port = process.env.PORT || 5000;
+const mongoUri = process.env.MONGO_URI;
 
 const app = express();
 app.use(cors());
@@ -23,6 +25,13 @@ app.get("/api/products/:id", (req, res) => {
   res.json(product);
 });
 
-app.listen(port, () => {
-  console.log(`server is running on http://localhost:${port}`);
+mongoose.connect(mongoUri).then(() => {
+  try {
+    console.log(`Server is connected to mongoDB`);
+    app.listen(port, () => {
+      console.log(`server is running on http://localhost:${port}`);
+    });
+  } catch (error) {
+    console.error("Connection error:", error);
+  }
 });
