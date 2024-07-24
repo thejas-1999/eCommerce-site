@@ -3,6 +3,7 @@ import cors from "cors";
 import productRoutes from "./router/productRouter.js";
 import connectDB from "./config/connectDB.js";
 import dotenv from "dotenv";
+import { notFound, errorHandler } from "./midleware/errorMiddleware.js";
 dotenv.config();
 
 const port = process.env.PORT || 5000;
@@ -16,6 +17,9 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/products", productRoutes);
+
+app.use(notFound);
+app.use(errorHandler);
 
 const startServer = async () => {
   try {
