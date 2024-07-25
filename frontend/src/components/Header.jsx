@@ -10,7 +10,11 @@ const Header = () => {
         <Container>
           <LinkContainer to="/">
             <Navbar.Brand>
-              <img src={logo} alt="tkshop" />
+              <img
+                src={logo}
+                alt="tkshop"
+                style={{ width: "40px", height: "45px" }}
+              />
               TKShop
             </Navbar.Brand>
           </LinkContainer>
