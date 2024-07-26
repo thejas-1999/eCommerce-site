@@ -2,7 +2,7 @@ import express from "express";
 import {
   authUser,
   registerUser,
-  logoutrUser,
+  logoutUser, // Corrected the typo
   getUserProfile,
   updateUserProfile,
   getUsers,
@@ -14,7 +14,7 @@ import {
 const router = express.Router();
 
 router.route("/").post(registerUser).get(getUsers);
-router.post("/logout", logoutrUser);
+router.post("/logout", logoutUser); // Corrected the typo
 router.post("/login", authUser);
 router.route("/profile").get(getUserProfile).put(updateUserProfile);
 router.route("/:id").delete(deleteUser).get(getUserById).put(updateUser);
