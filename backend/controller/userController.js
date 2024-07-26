@@ -51,14 +51,14 @@ const getUserById = asyncHandler(async (req, res) => {
 });
 
 //@desc Update user
-//@route PUT /api/users/profile
+//@route PUT /api/users/:id
 //@access private/admin
 const updateUser = asyncHandler(async (req, res) => {
   res.send("update User By Admin");
 });
 
 //@desc Delete user
-//@route DELETE /api/users/profile
+//@route DELETE /api/users/:id
 //@access private/admin
 const deleteUser = asyncHandler(async (req, res) => {
   res.send("delete User By Admin");

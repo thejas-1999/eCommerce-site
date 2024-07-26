@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import productRoutes from "./router/productRouter.js";
+import userRoutes from "./router/userRouter.js";
 import connectDB from "./config/connectDB.js";
 import dotenv from "dotenv";
 import { notFound, errorHandler } from "./midleware/errorMiddleware.js";
@@ -17,6 +18,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/products", productRoutes);
+app.use("api/users", userRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
