@@ -27,7 +27,7 @@ const PlaceOrderScreen = () => {
   const placeOrderHandler = async () => {
     try {
       const res = await createOrder({
-        orderItems: cart.cartItems, // Fixed variable name
+        orderItems: cart.cartItems,
         shippingAddress: cart.shippingAddress,
         paymentMethod: cart.paymentMethod,
         itemsPrice: cart.itemsPrice,
@@ -38,7 +38,6 @@ const PlaceOrderScreen = () => {
       dispatch(clearCartItems());
       navigate(`/order/${res._id}`);
     } catch (err) {
-      // Improved error handling
       toast.error(err.message || "An error occurred while placing the order.");
     }
   };
@@ -67,7 +66,7 @@ const PlaceOrderScreen = () => {
             </ListGroup.Item>
             <ListGroup.Item>
               <h2>Order Items</h2>
-              {cart.cartItems.length === 0 ? ( // Fixed conditional rendering
+              {cart.cartItems.length === 0 ? (
                 <Message>Your cart is empty</Message>
               ) : (
                 <ListGroup variant="flush">
@@ -83,10 +82,7 @@ const PlaceOrderScreen = () => {
                           />
                         </Col>
                         <Col>
-                          <Link to={`/product/${item.product}`}>
-                            {item.name}
-                          </Link>{" "}
-                          {/* Fixed link URL */}
+                          <Link to={`/product/${item._id}`}>{item.name}</Link>{" "}
                         </Col>
                         <Col md={4}>
                           {item.qty} X {item.price}₹ = {item.qty * item.price}₹
