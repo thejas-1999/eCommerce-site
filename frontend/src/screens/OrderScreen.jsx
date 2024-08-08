@@ -204,8 +204,7 @@ const OrderScreen = () => {
                   </Col>
                 </Row>
               </ListGroup.Item>
-              {!order.isPaid}
-              {
+              {!order.isPaid && (
                 <ListGroup.Item>
                   {loadingPay && <Loader />}
 
@@ -213,12 +212,12 @@ const OrderScreen = () => {
                     <Loader />
                   ) : (
                     <div>
-                      {/*  <Button
-                        onClick={onApproveTest}
-                        style={{ marginBottom: "10px" }}
-                      >
-                        Test Pay Order
-                      </Button> */}
+                      {/* <Button
+          onClick={onApproveTest}
+          style={{ marginBottom: "10px" }}
+        >
+          Test Pay Order
+        </Button> */}
                       <div>
                         <PayPalButtons
                           createOrder={createOrder}
@@ -229,7 +228,7 @@ const OrderScreen = () => {
                     </div>
                   )}
                 </ListGroup.Item>
-              }
+              )}
               {loadingDeliver && <Loader />}
               {userInfo &&
                 userInfo.isAdmin &&

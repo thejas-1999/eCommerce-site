@@ -3,13 +3,40 @@ import { Table, Button, Row, Col } from "react-bootstrap";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
-import { useGetProductsQuery } from "../../slices/productApiSlice";
+import {
+  useGetProductsQuery,
+  useCreateProductMutation,
+} from "../../slices/productApiSlice";
+import { toast } from "react-toastify";
 
 const ProductListScreen = () => {
-  const { data: products, isLoading, error } = useGetProductsQuery();
+  const { data: products, isLoading, error, refetch } = useGetProductsQuery();
+  const [createProduct, { isLoading: loadingCreate }] =
+    useCreateProductMutation();
+  /* const [deleteProduct, { isLoading: loadingDelete }] =
+    useDeleteProductMutation(); */
 
-  const deleteHandler = (id) => {
-    console.log("delete", id);
+  /* const deleteHandler = async (id) => {
+    if (window.confirm("Are you sure you want to delete this product?")) {
+      try {
+        await deleteProduct(id);
+        refetch();
+        toast.success("Product deleted successfully");
+      } catch (error) {
+        toast.error(error?.data?.message || error.error);
+      }
+    }
+  };
+ */
+  const createProductHandler = async () => {
+    if (window.confirm("Are you sure you want to create a new product?")) {
+      try {
+        await createProduct();
+        refetch();
+      } catch (error) {
+        toast.error(error?.data?.message || error.error);
+      }
+    }
   };
 
   return (
@@ -19,11 +46,14 @@ const ProductListScreen = () => {
           <h1>Products</h1>
         </Col>
         <Col className="text-end">
-          <Button className="btn-sm m-3">
-            <FaEdit /> Create Product{" "}
+          <Button className="btn-sm m-3" onClick={createProductHandler}>
+            <FaEdit /> Create Product
           </Button>
         </Col>
       </Row>
+
+      {loadingCreate && <Loader />}
+      {/* {loadingDelete && <Loader />} */}
       {isLoading ? (
         <Loader />
       ) : error ? (
@@ -73,4 +103,5 @@ const ProductListScreen = () => {
     </>
   );
 };
+
 export default ProductListScreen;
