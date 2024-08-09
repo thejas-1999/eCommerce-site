@@ -1,9 +1,10 @@
+import path from "path";
 import express from "express";
 import cors from "cors";
 import productRoutes from "./router/productRouter.js";
 import userRoutes from "./router/userRouter.js";
 import orderRoutes from "./router/orderRouter.js";
-
+import uploadRoutes from "./router/uploadRouter.js";
 import connectDB from "./config/connectDB.js";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
@@ -34,10 +35,14 @@ app.get("/", (req, res) => {
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/orders", orderRoutes);
+app.use("/api/upload", uploadRoutes);
 
 app.get(`/api/config/paypal`, (req, res) =>
   res.send({ clientId: process.env.PAYPAL_CLIENT_ID })
 );
+
+const __dirname = path.resolve();
+app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 app.use(notFound);
 app.use(errorHandler);
