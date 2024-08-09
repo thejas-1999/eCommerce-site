@@ -13,21 +13,7 @@ const ProductListScreen = () => {
   const { data: products, isLoading, error, refetch } = useGetProductsQuery();
   const [createProduct, { isLoading: loadingCreate }] =
     useCreateProductMutation();
-  /* const [deleteProduct, { isLoading: loadingDelete }] =
-    useDeleteProductMutation(); */
 
-  /* const deleteHandler = async (id) => {
-    if (window.confirm("Are you sure you want to delete this product?")) {
-      try {
-        await deleteProduct(id);
-        refetch();
-        toast.success("Product deleted successfully");
-      } catch (error) {
-        toast.error(error?.data?.message || error.error);
-      }
-    }
-  };
- */
   const createProductHandler = async () => {
     if (window.confirm("Are you sure you want to create a new product?")) {
       try {
@@ -53,7 +39,7 @@ const ProductListScreen = () => {
       </Row>
 
       {loadingCreate && <Loader />}
-      {/* {loadingDelete && <Loader />} */}
+
       {isLoading ? (
         <Loader />
       ) : error ? (
