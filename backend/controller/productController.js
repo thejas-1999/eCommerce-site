@@ -60,7 +60,7 @@ const updateProduct = asyncHandler(async (req, res) => {
     product.category = category;
     product.countInStock = countInStock;
 
-    const updatedProduct = await product.find();
+    const updatedProduct = await product.save();
     res.json(updatedProduct);
   } else {
     res.status(404);
